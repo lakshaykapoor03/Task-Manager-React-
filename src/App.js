@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+
+import { Outlet, createBrowserRouter } from 'react-router-dom';
 import './App.css';
+import UserContainer from './Components/UserContainer';
+import UserTask from './Components/UserTask';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Outlet/>
     </div>
   );
 }
+
+export const appRouter= createBrowserRouter([
+  {  path:"/",
+    element:<App/>,
+    children:[
+      {
+        path:"/",
+        element:<UserContainer/>
+      },
+      {  path:"/userTask",
+      element:<UserTask/>,
+    }
+    ]
+ },
+ 
+  ])
+
+
+
 
 export default App;
